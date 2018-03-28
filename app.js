@@ -1,6 +1,7 @@
 const express = require('express');
 const request = require('superagent');
 const redis = require('redis');
+const access_token = `???`
 
 const insta_endpoint = ``
 
@@ -34,7 +35,7 @@ function cache(req, res, next) {
 };
 
 app.get('/', cache, function(req, res, next) {
-  request.get(`https://api.instagram.com/v1/users/self/?access_token=1736203948.1677ed0.279cb1cce73748bdabd16d0bbcd821ef`, function (err, resp) {
+  request.get(`https://api.instagram.com/v1/users/self/?access_token=${access_token}`, function (err, resp) {
     if (err) throw err;
     let data = JSON.parse(resp.text).data;
     let username = data.username;
